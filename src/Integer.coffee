@@ -9,7 +9,7 @@ class Integer extends Type
   "=": (newValue) =>
     oldValue = @_value
     super(newValue)
-    unless newValue % 1 isnt 0
+    unless newValue % 1 is 0
       @_value = oldValue
       throw Error "#{newValue} is not an Integer"
 
