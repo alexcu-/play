@@ -1,7 +1,8 @@
 Type = require './Type'
 
 ###
-This class extends type for constant representation
+This class extends type for constant representation by wrapping a type object that cannot be
+reassigned. Note that the this._value._value reference will still have write access
 ###
 class Constant extends Type
   ###

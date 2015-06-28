@@ -26,6 +26,16 @@ x['='] 'true'
 x['='] false
 
 # Constant Pointers
+try
+  x = new Integer
+  x['='] 256
+  x = new Constant x
+  console.log "created new constant of #{x._value._value}"
+  console.log "trying to change constant to 512"
+  x['='] 512
+catch e
+  console.log "not changing constant!!"
+
 x = new Integer
 x['='] 11
 console.log x._value # should be 11
