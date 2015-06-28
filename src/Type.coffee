@@ -7,6 +7,16 @@ class Type extends Object
   ###
   @__addressTable: {}
   ###
+  Looks up an address in the __addressTable
+  @param    [integer] address The address to lookup
+  @returns  [Type]    The type stored in that address
+  ###
+  @__lookup: (address) ->
+    lookedUp = @__addressTable[address]
+    unless lookedUp?
+      throw Error "Nothing stored at #{address}"
+    lookedUp
+  ###
   @param  [string]  _internalType  The internal JavaScript type given to this variable
   @param  [object]  _value         The actual value assigned to this variable
   ###
@@ -20,7 +30,7 @@ class Type extends Object
   "=": (newValue) =>
     typeOfNew = typeof newValue
     if typeOfNew isnt @_internalType
-      throw Error "#{newValue} of type #{typeOfNew} is not a #{@_internalType}"
+      throw TypeError "#{newValue} of type #{typeOfNew} is not a #{@_internalType}"
     @_value = newValue
   ###
   @returns The unique address of this object
