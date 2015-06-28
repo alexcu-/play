@@ -17,8 +17,16 @@ class Type extends Object
       throw Error "Nothing stored at #{address}"
     lookedUp
   ###
-  @param  [string]  _internalType  The internal JavaScript type given to this variable
-  @param  [object]  _value         The actual value assigned to this variable
+  Checks if the given object is an instanceof Type
+  @param    [object]  obj The object to check
+  @returns  [boolean] True if so, false otherwise
+  ###
+  @__checkInstanceOf: (obj) ->
+    obj instanceof Type or
+    obj.__super__? and obj.__super__.constructor.name is Type.name
+  ###
+  @param  [string]  _internalType   The internal JavaScript type given to this variable
+  @param  [object]  _value          The actual value assigned to this variable
   ###
   constructor: (@_internalType, @_value) ->
     @__addressNumber = (Object.keys(Type.__addressTable) || []).length + 1
