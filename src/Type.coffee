@@ -20,7 +20,7 @@ class Type extends Object
   "=": (newValue) =>
     typeOfNew = typeof newValue
     if typeOfNew isnt @_internalType
-      throw Error "#{newValue} of type #{typeOfNew} is not a #{@__internalType}"
+      throw Error "#{newValue} of type #{typeOfNew} is not a #{@_internalType}"
     @_value = newValue
   ###
   @returns The unique address of this object
