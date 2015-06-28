@@ -2,6 +2,7 @@ Boolean = require './Boolean'
 Integer = require './Integer'
 Decimal = require './Decimal'
 Pointer = require './Pointer'
+Constant = require './Constant'
 
 # Decimals
 z = new Decimal
@@ -10,19 +11,26 @@ z['='] 1.2
 z['='] 3
 
 # Pointers
-x = new Pointer Decimal
-y = new Decimal
-y['='] 11.2
-
-console.log y._value
-x['='] y['@']()
-x['^'] (yy)-> yy._value = yy._value + 1
-console.log y._value
-
+x = new Pointer Integer
 y = new Integer
-x['@']
+y['='] 0
+console.log y._value # should be 0
+x['='] y['@']()
+x['^'] (yy)-> yy._value = yy._value + 10
+console.log y._value # should be 10
 
+# Boolean assignment
 x = new Boolean
 x['='] 1
 x['='] 'true'
 x['='] false
+
+# Constant Pointers
+x = new Integer
+x['='] 11
+console.log x._value # should be 11
+xptr = new Pointer Integer
+xptr['='] x['@']()
+XPTR = new Constant xptr
+XPTR._value['^'] (xx) -> xx._value++
+console.log x._value # should be 12
