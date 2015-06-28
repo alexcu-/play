@@ -10,10 +10,9 @@ class Pointer extends Type
   @returns [string] The type name of this pointer
   ###
   _resolvePtrType = (type) ->
-    if not type.__super__? or type.__super__.constructor.name isnt Type.name
+    unless Type.__checkInstanceOf type
       throw TypeError "Pointer must point to Type"
-    'ptr' + type.name
-
+    'PointerTo' + type.name
   ###
   @param  [Type]  ptrTo  The type the pointer points to
   ###
